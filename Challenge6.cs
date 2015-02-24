@@ -17,13 +17,7 @@ namespace Challenges
         /// <returns></returns>
         public static int Solution(int X, int Y, int D)
         {
-            int i = 0;
-            while (X < Y)
-            {
-                i++;
-                X += D;
-            }
-            return i;
+            return (int)Math.Ceiling(((double)Y - (double)X) / (double)D);
         }
     }
 }
