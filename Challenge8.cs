@@ -4,7 +4,12 @@ namespace Challenges
 {
     public static class Challenge8
     {
-        public static int Solution(int X, int[] A)
+        /// <summary>
+        /// Challenge 8
+        /// </summary>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public static int Solution(int[] A)
         {
             return 0;
         }
