@@ -1,0 +1,50 @@
+        static void Main(string[] args)
+        {
+            Console.WriteLine(solution(1234567890));
+            Console.ReadLine();
+        }
+        static int solution(int N)
+        {
+            int[] digits = new int[10];
+            var str = N.ToString();
+            foreach (var c in str)
+            {
+                ++digits[(int)char.GetNumericValue(c)];
+            }
+            int result = 0;
+            foreach (int digit in digits)
+            {
+                if (digit > 0) result += 1;
+            }
+            return result;
+        }
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine(solution(5, 3, -1, 5));
+            Console.ReadLine();
+        }
+        static int solution(int A, int B, int C, int D)
+        {
+            int[] s = { A, B, C, D };
+            IEnumerable<IEnumerable<int>> permutations = GetPermutations(Enumerable.Range(1, 4), 4);
+            int result = 0;
+            foreach (var permutation in permutations)
+            {
+                int[] p = permutation.ToArray();
+                int temp = f(s[p[0] - 1], s[p[1] - 1], s[p[2] - 1], s[p[3] - 1]);
+                if (temp > result) result = temp;
+            }
+            return result;
+        }
+        static IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> list, int length)
+        {
+            if (length == 1) return list.Select(t => new T[] { t });
+            return GetPermutations(list, length - 1)
+                .SelectMany(t => list.Where(e => !t.Contains(e)),
+                    (t1, t2) => t1.Concat(new T[] { t2 }));
+        }
+        static int f(int S0, int S1, int S2, int S3)
+        {
+            return (Math.Abs(S0-S1) + Math.Abs(S1-S2) + Math.Abs(S2-S3));
+        }
